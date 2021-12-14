@@ -1,4 +1,4 @@
-package model;
+package com.example.backend.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,9 +12,6 @@ import javax.persistence.Id;
 import java.util.UUID;
 
 @Entity
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class TipoProduto {
 
     @Id
@@ -25,4 +22,28 @@ public class TipoProduto {
 
     @Column(nullable = false)
     private String categoria;
+
+    public TipoProduto(UUID id, String categoria) {
+        this.id = id;
+        this.categoria = categoria;
+    }
+
+    public TipoProduto() {
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
 }

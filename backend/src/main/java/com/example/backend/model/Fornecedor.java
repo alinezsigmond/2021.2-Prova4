@@ -1,4 +1,4 @@
-package model;
+package com.example.backend.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,10 +12,7 @@ import javax.persistence.Id;
 import java.util.UUID;
 
 @Entity
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class Produto {
+public class Fornecedor {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -24,20 +21,29 @@ public class Produto {
     private UUID id;
 
     @Column(nullable = false)
-    private String categoria;
+    private String nome;
 
-    @Column(nullable = false)
-    private int quantidade;
+    public Fornecedor(UUID id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
 
-    @Column(nullable = false)
-    private float precoVenda;
+    public Fornecedor() {
+    }
 
-    @Column(nullable = false)
-    private float precoCompra;
+    public UUID getId() {
+        return id;
+    }
 
-    @Column(nullable = false)
-    private Fornecedor fornecedor;
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
-    @Column(nullable = false)
-    private TipoProduto tipoProduto;
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }
