@@ -14,26 +14,19 @@ public class Produto {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
-    @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
     private int quantidade;
 
-    @Column(nullable = false)
     private float precoVenda;
 
-    @Column(nullable = false)
     private float precoCompra;
 
-    @Column(nullable = false)
     @ManyToOne
     private Fornecedor fornecedor;
 
-    @Column(nullable = false)
     @ManyToOne
     private TipoProduto tipoProduto;
 

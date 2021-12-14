@@ -29,6 +29,7 @@ public class FornecedorService {
         Fornecedor fornecedorEncontrado = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Fornecedor não encontrado"));
         fornecedorEncontrado.setNome(fornecedor.getNome());
+        repository.save(fornecedorEncontrado);
 
         return fornecedorEncontrado;
     }

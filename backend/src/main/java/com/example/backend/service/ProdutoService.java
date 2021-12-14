@@ -41,6 +41,7 @@ public class ProdutoService {
         produtoEncontrado.setPrecoVenda(produto.getPrecoVenda());
         produtoEncontrado.setFornecedor(produto.getFornecedor());
         produtoEncontrado.setTipoProduto(produto.getTipoProduto());
+        repository.save(produtoEncontrado);
         return produtoEncontrado;
     }
 

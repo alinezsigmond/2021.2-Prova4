@@ -30,6 +30,7 @@ public class TipoProdutoService {
                 .orElseThrow(() -> new RuntimeException("Tipo de produto não encontrado"));
 
         tipoProdutoEncontrado.setCategoria(tipoProduto.getCategoria());
+        repository.save(tipoProdutoEncontrado);
         return tipoProdutoEncontrado;
     }
 
