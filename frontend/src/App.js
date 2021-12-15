@@ -1,24 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
+import Produto from './Components/Produto/produto'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Produto id="01" nome='Coquinha gelada' qtd='8' venda='5' compra='1,99' fornecedor='Coca-Cola Company' tipo='Comes & Bebes' />
+    </>
   );
 }
 
