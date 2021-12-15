@@ -30,6 +30,16 @@ public class ProdutoController {
         return new ResponseEntity<>(service.save(produto), HttpStatus.CREATED);
     }
 
+//    @GetMapping("/estoque/{id}")
+//    public ResponseEntity<Integer> showEstoque(@PathVariable UUID id, @RequestBody Produto produto) throws Exception {
+//        return new ResponseEntity(service.showEstoque(id, produto), HttpStatus.OK);
+//    }
+
+    @PutMapping("/estoque/{id}")
+    public ResponseEntity<Integer> editEstoque(@PathVariable UUID id, @RequestBody Produto produto) throws Exception {
+        return new ResponseEntity(service.editEstoque(id, produto), HttpStatus.OK);
+    }
+
     @PutMapping("/{id}")
     public  ResponseEntity<Produto> update(@PathVariable UUID id, @RequestBody Produto produto) throws Exception {
         return new ResponseEntity(service.update(id, produto), HttpStatus.OK);

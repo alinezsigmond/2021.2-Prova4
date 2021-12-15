@@ -36,7 +36,6 @@ public class ProdutoService {
                 .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
 
         produtoEncontrado.setNome(produto.getNome());
-        produtoEncontrado.setQuantidade(produto.getQuantidade());
         produtoEncontrado.setPrecoCompra(produto.getPrecoCompra());
         produtoEncontrado.setPrecoVenda(produto.getPrecoVenda());
         produtoEncontrado.setFornecedor(produto.getFornecedor());
@@ -51,4 +50,18 @@ public class ProdutoService {
         repository.deleteById(id);
         return "Produto deletado com sucesso!";
     }
+
+    public Integer editEstoque(UUID id, Produto produto) {
+        Produto produtoEncontrado = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+        produtoEncontrado.setQuantidade(produto.getQuantidade());
+
+        return produto.getQuantidade();
+    }
+
+//    public Integer showEstoque(UUID id, Produto produto) {
+//        Produto produtoEncontrado = repository.findById(id)
+//                .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+//        return produto.getQuantidade();
+//    }
 }
