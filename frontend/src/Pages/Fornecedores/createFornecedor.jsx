@@ -45,6 +45,7 @@ export const CreateFornecedor = () => {
         marginTop: '3%',
         color: 'white'}} 
         onClick={() => setOpen(true)}
+        id='create'
       >Novo</Button>
       <Modal open={open} onClose={() => setOpen(false)} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
           <Paper sx={modalStyle}>      
@@ -54,7 +55,7 @@ export const CreateFornecedor = () => {
             </Typography>
             <TextField sx={{marginBlock: '5%'}} required id="outlined-required" label="Nome" onChange={(e) => setNome(e.target.value)} />
             <div style={{diplay: 'flex'}} >
-                <Button type="submit" variant="contained" color="success" sx={{marginRight: '5%',backgroundColor: "#00939F", '&:hover': {backgroundColor: "#006870"} }}>
+                <Button id="salvar" type="submit" variant="contained" color="success" sx={{marginRight: '5%',backgroundColor: "#00939F", '&:hover': {backgroundColor: "#006870"} }}>
                     Salvar
                 </Button>
                 <Button type="reset" variant="contained" onClick={() => setOpen(false)} sx={{backgroundColor: "#c3c3c3" }}>
