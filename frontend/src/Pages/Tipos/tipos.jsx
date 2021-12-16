@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import Tipo from "../../Components/Tipo/tipo";
 import api from "../../services/api";
+import { CreateTipo } from "./createTipo";
 import { ModifyModal } from "./editModal";
 
 export default function Tipos() {
@@ -22,6 +23,7 @@ export default function Tipos() {
 
     return(
         <>
+        <CreateTipo />
          { results.length !== 0 
                 ?
                 results.map(post => (

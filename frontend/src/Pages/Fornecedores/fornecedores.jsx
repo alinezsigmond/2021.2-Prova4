@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Fornecedor from "../../Components/Fornecedor/fornecedor";
 import api from '../../services/api'
+import { CreateFornecedor } from "./createFornecedor";
 import { ModifyModal } from "./editModal";
 
 export default function Fornecedores() {
@@ -22,6 +23,7 @@ export default function Fornecedores() {
 
     return(
         <>
+        <CreateFornecedor />
         { results.length !== 0 
             ?
             results.map(post => (

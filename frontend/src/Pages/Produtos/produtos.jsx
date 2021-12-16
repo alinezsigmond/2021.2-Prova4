@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import Produto from "../../Components/Produto/produto";
 import api from "../../services/api";
+import { CreateProduto } from "./createProduto";
 import { EditEstoque } from "./editEstoque";
 import { ModifyProduto } from "./editProduto";
 
@@ -23,6 +24,7 @@ export default function Produtos() {
 
     return(
         <>
+        <CreateProduto />
          { results.length !== 0 
                 ?
                 results.map(post => (

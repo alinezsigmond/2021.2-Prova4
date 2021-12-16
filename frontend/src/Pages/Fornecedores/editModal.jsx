@@ -47,7 +47,6 @@ export const ModifyModal = ({fornecedor}) => {
             <Typography sx={{marginBottom: '3%'}} variant="h5" color="initial">
                 Editar Fornecedor
             </Typography>
-            <TextField sx={{marginBlock: '5%'}} required id="outlined-required" label="ID" defaultValue={fornecedor.id} onChange={(e) => setId(e.target.value)} />
             <TextField sx={{marginBlock: '5%'}} required id="outlined-required" label="Nome" defaultValue={fornecedor.nome} onChange={(e) => setNome(e.target.value)} />
             <div style={{diplay: 'flex'}} >
                 <Button type="submit" variant="contained" color="success" sx={{marginRight: '5%',backgroundColor: "#00939F", '&:hover': {backgroundColor: "#006870"} }}>

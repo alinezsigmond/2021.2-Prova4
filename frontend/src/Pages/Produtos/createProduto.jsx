@@ -19,14 +19,15 @@ const modalStyle = {
     overflow: 'auto',
   };
 
-export const ModifyProduto = ({produto}) => {
+export const CreateProduto = () => {
     const [ open, setOpen ] = useState(false);
-    const [id, setId] = useState(produto.id);
-    const [nome, setNome] = useState(produto.nome);
-    const [compra, setCompra ] = useState(produto.precoCompra);
-    const [venda, setVenda ] = useState(produto.precoVenda);
-    const [fornecedor, setFornecedor ] = useState(produto.fornecedor.id);
-    const [tipo, setTipo ] = useState(produto.tipoProduto.id);
+    const [id, setId] = useState();
+    const [nome, setNome] = useState();
+    const [compra, setCompra ] = useState();
+    const [venda, setVenda ] = useState();
+    const [ quantidade, setQuantidade ] = useState();
+    const [fornecedor, setFornecedor ] = useState();
+    const [tipo, setTipo ] = useState();
     const [tipos, setTipos ] = useState([]);
     const [fornecedores, setFornecedores ] = useState([]);
 
@@ -36,19 +37,20 @@ export const ModifyProduto = ({produto}) => {
       api.get('/fornecedores').then(response => setFornecedores(response.data));
   }, []);
   
-    const edita = (e) => {
+    const cria = (e) => {
       e.preventDefault();
-      const toEdit = {
+      const toCreate = {
         id: id,
         nome: nome,
         precoCompra: compra,
         precoVenda: venda,
+        quantidade: quantidade,
         fornecedor: {id: fornecedor},
         tipoProduto: {id: tipo}
       }
-      api.put(`http://localhost:8080/api/produtos/${produto.id}`, toEdit).then(function (response) {
-      if(response.status === 200) {
-        alert("Produto editado com sucesso");
+      api.post(`http://localhost:8080/api/produtos/`, toCreate).then(function (response) {
+      if(response.status === 201) {
+        alert("Produto criado com sucesso");
         setOpen(false);
       } 
     })
@@ -56,22 +58,27 @@ export const ModifyProduto = ({produto}) => {
     
     return (
       <>
-      <Button sx={{marginLeft: '37%'}} onClick={() => setOpen(true)}>Editar detalhes</Button>
+      <Button sx={{marginLeft: '37%'}}
+        sx={{backgroundColor: 'green',
+        marginLeft: '37.3%',
+        '&:hover': {backgroundColor: "#004b06"},
+        marginTop: '3%',
+        color: 'white'}} onClick={() => setOpen(true)}>Novo</Button>
       <Modal open={open} onClose={() => setOpen(false)} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
           <Paper sx={modalStyle}>      
-            <Box component="form" onSubmit={(e) => edita(e)} >
+            <Box component="form" onSubmit={(e) => cria(e)} >
             <Typography sx={{marginBottom: '3%'}} variant="h5" color="initial">
-                Editar Categoria
+                Novo Produto
             </Typography>
-            <TextField sx={{marginBlock: '5%'}} required id="outlined-required" label="Nome" defaultValue={produto.nome} onChange={(e) => setNome(e.target.value)} />
-            <TextField sx={{marginBlock: '5%'}} required id="outlined-required" label="Preço de compra:" defaultValue={produto.precoCompra} onChange={(e) => setCompra(e.target.value)} />
-            <TextField sx={{marginBlock: '5%'}} required id="outlined-required" label="Preço de venda:" defaultValue={produto.precoVenda} onChange={(e) => setVenda(e.target.value)} />
+            <TextField sx={{marginBlock: '5%'}} required id="outlined-required" label="Nome" onChange={(e) => setNome(e.target.value)} />
+            <TextField sx={{marginBlock: '5%'}} required id="outlined-required" label="Preço de compra:" onChange={(e) => setCompra(e.target.value)} />
+            <TextField sx={{marginBlock: '5%'}} required id="outlined-required" label="Preço de venda:" onChange={(e) => setVenda(e.target.value)} />
+            <TextField sx={{marginBlock: '5%'}} required id="outlined-required" label="Quantidade em estoque:" onChange={(e) => setQuantidade(e.target.value)} />
             <TextField 
               select
               sx={{marginBlock: '5%', width: 223}} 
               required id="outlined-required" 
               label="Fornecedor" 
-              defaultValue={fornecedores.find(t => t.id === produto.fornecedor.id)}
               onChange={(e) => setFornecedor(e.target.value.id)} 
             >
               {fornecedores.map((f) => {
@@ -85,7 +92,6 @@ export const ModifyProduto = ({produto}) => {
               sx={{marginBlock: '5%', width: 223}} 
               required id="outlined-required" 
               label="Tipo" 
-              defaultValue={tipos.find(t => t.id === produto.tipoProduto.id)}
               onChange={(e) => setTipo(e.target.value.id)}
             >
               {tipos.map((t) => {

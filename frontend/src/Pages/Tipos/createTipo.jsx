@@ -19,20 +19,18 @@ const modalStyle = {
     overflow: 'auto',
   };
 
-export const ModifyModal = ({tipo}) => {
+export const CreateTipo = () => {
     const [ open, setOpen ] = useState(false);
-    const [id, setId] = useState(tipo.id);
-    const [nome, setNome] = useState(tipo.categoria);
+    const [nome, setNome] = useState();
   
-    const edita = (e) => {
+    const cria = (e) => {
       e.preventDefault();
-      const toEdit = {
-        id: id,
+      const toCreate = {
         categoria: nome
       }
-      api.put(`http://localhost:8080/api/tipos/${tipo.id}`, toEdit).then(function (response) {
-      if(response.status === 200) {
-        alert("Tipo de produto editado com sucesso");
+      api.post(`http://localhost:8080/api/tipos`, toCreate).then(function (response) {
+      if(response.status === 201) {
+        alert("Tipo de produto criado com sucesso");
         setOpen(false);
       } 
     })
@@ -40,14 +38,21 @@ export const ModifyModal = ({tipo}) => {
     
     return (
       <>
-      <Button sx={{marginLeft: '37%'}} onClick={() => setOpen(true)}>Editar</Button>
+      <Button sx={{marginLeft: '37%'}}
+        sx={{backgroundColor: 'green',
+        marginLeft: '37.3%',
+        '&:hover': {backgroundColor: "#004b06"},
+        marginTop: '3%',
+        color: 'white'}} 
+        onClick={() => setOpen(true)}
+      >Novo</Button>
       <Modal open={open} onClose={() => setOpen(false)} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
           <Paper sx={modalStyle}>      
-            <Box component="form" onSubmit={(e) => edita(e)} >
+            <Box component="form" onSubmit={(e) => cria(e)} >
             <Typography sx={{marginBottom: '3%'}} variant="h5" color="initial">
-                Editar Categoria
+                Cadastro Categoria
             </Typography>
-            <TextField sx={{marginBlock: '5%'}} required id="outlined-required" label="Categoria" defaultValue={tipo.categoria} onChange={(e) => setNome(e.target.value)} />
+            <TextField sx={{marginBlock: '5%'}} required id="outlined-required" label="Categoria" onChange={(e) => setNome(e.target.value)} />
             <div style={{diplay: 'flex'}} >
                 <Button type="submit" variant="contained" color="success" sx={{marginRight: '5%',backgroundColor: "#00939F", '&:hover': {backgroundColor: "#006870"} }}>
                     Salvar
