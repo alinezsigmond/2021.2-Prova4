@@ -49,17 +49,5 @@ public class SeleniumTest {
         Assertions.assertThat(driver.findElement(By.id("nome")).isDisplayed());
         String text = driver.findElement(By.id("nome")).getText();
         Assertions.assertThat(text).isEqualTo("Nome: Selenium");
-
-//        Selenide.$(By.name("id")).shouldBe(Condition.visible);
-
-//        driver.findElement(By.id("cadastrar")).click();
-//        driver.findElement(By.name("name")).sendKeys("Selenide");
-//        driver.findElement(By.name("email")).sendKeys("Selenide@teste.com");
-//        driver.findElement(By.name("phone")).sendKeys("+1 666");
-//        driver.findElement(By.id("cadastrar")).click();
-//        Alert alert = driver.switchTo().alert();
-//        alertMessage = alert.getText();
-//        System.out.println(alert);
-//        Assertions.assertThat(alertMessage).isEqualTo("Contato cadastrado com sucesso!");
     }
 }
