@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Fornecedor from "../../Components/Fornecedor/fornecedor";
 import api from '../../services/api'
+import { ModifyModal } from "./editModal";
 
 export default function Fornecedores() {
     const [results, setResults] = useState([])
@@ -29,7 +30,7 @@ export default function Fornecedores() {
                     id={post.id}
                     nome={post.nome}
                 />
-                <Button onClick={() => alert("edita ae se tu é bom")} sx={{marginLeft: '37%'}}>Editar</Button>
+                <ModifyModal fornecedor={post} />
                 <Button onClick={() => deleta(post.id)}>Deletar</Button>
                 <p style={{marginBottom: '5%'}}></p>
                 </>

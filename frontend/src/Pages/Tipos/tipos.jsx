@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import Tipo from "../../Components/Tipo/tipo";
 import api from "../../services/api";
+import { ModifyModal } from "./editModal";
 
 export default function Tipos() {
     const [results, setResults] = useState([])
@@ -29,7 +30,7 @@ export default function Tipos() {
                         id={post.id}
                         nome={post.categoria}
                     />
-                    <Button onClick={() => alert("edita ae se tu é bom")} sx={{marginLeft: '37%'}}>Editar</Button>
+                    <ModifyModal tipo={post} />
                     <Button onClick={() => deleta(post.id)}>Deletar</Button>
                     <p style={{marginBottom: '5%'}}></p>
                     </>

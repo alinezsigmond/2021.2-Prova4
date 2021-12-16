@@ -2,6 +2,8 @@ import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import Produto from "../../Components/Produto/produto";
 import api from "../../services/api";
+import { EditEstoque } from "./editEstoque";
+import { ModifyProduto } from "./editProduto";
 
 export default function Produtos() {
     const [results, setResults] = useState([])
@@ -34,8 +36,8 @@ export default function Produtos() {
                         tipo={post.tipoProduto.categoria}
                         fornecedor={post.fornecedor.nome}
                     />
-                    <Button onClick={() => alert("edita ae se tu é bom")} sx={{marginLeft: '37%'}}>Editar detalhes</Button>
-                    <Button onClick={() => alert("edita ae se tu é bom")} sx={{marginLeft: '1%'}}>Editar estoque</Button>
+                    <ModifyProduto produto={post} />
+                    <EditEstoque produto={post} />
                     <Button onClick={() => deleta(post.id)} sx={{marginLeft: '1%'}}>Deletar</Button>
                     <p style={{marginBottom: '5%'}}></p>
                     </>
