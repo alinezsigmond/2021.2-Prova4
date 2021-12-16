@@ -59,10 +59,4 @@ public class ProdutoService {
 
         return produto.getQuantidade();
     }
-
-//    public Integer showEstoque(UUID id, Produto produto) {
-//        Produto produtoEncontrado = repository.findById(id)
-//                .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
-//        return produto.getQuantidade();
-//    }
 }
