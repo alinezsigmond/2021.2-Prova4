@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export default function Home() {
 
@@ -6,9 +7,9 @@ export default function Home() {
         <>
             <h1>Bom dia, meu anjo!</h1>
             <h2>O que desejas?</h2>
-            <Button>Tipos de Produtos</Button>
-            <Button>Fornecedores</Button>
-            <Button>Produtos</Button>
+            <Link to='/fornecedores'><Button>Fornecedores</Button></Link>
+            <Link to='/tipos-produtos'><Button>Tipos de Produtos</Button></Link>
+            <Link to='/produtos'><Button>Produtos</Button></Link>
         </>
     )
 }

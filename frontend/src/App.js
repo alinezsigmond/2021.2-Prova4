@@ -1,10 +1,20 @@
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Produto from './Components/Produto/produto'
+import Fornecedores from './Pages/Fornecedores/fornecedores';
+import Home from './Pages/Home/home';
+import Produtos from './Pages/Produtos/produtos';
+import Tipos from './Pages/Tipos/tipos';
 
 function App() {
   return (
     <>
-    <Produto id="01" nome='Coquinha gelada' qtd='8' venda='5' compra='1,99' fornecedor='Coca-Cola Company' tipo='Comes & Bebes' />
+    <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/fornecedores" element={<Fornecedores />} />
+        <Route path="/tipos-produtos" element={<Tipos />} />
+        <Route path="/produtos" element={<Produtos />} />
+      </Routes>
     </>
   );
 }

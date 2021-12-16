@@ -55,6 +55,7 @@ public class ProdutoService {
         Produto produtoEncontrado = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
         produtoEncontrado.setQuantidade(produto.getQuantidade());
+        repository.save(produtoEncontrado);
 
         return produto.getQuantidade();
     }
