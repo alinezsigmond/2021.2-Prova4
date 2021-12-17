@@ -38,7 +38,8 @@ export const CreateTipo = () => {
     
     return (
       <>
-      <Button sx={{marginLeft: '37%'}}
+      <Button
+        data-testid="botao"
         sx={{backgroundColor: 'green',
         marginLeft: '37.3%',
         '&:hover': {backgroundColor: "#004b06"},
@@ -46,7 +47,7 @@ export const CreateTipo = () => {
         color: 'white'}} 
         onClick={() => setOpen(true)}
       >Novo</Button>
-      <Modal open={open} onClose={() => setOpen(false)} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+      <Modal data-testid="modal" open={open} onClose={() => setOpen(false)} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
           <Paper sx={modalStyle}>      
             <Box component="form" onSubmit={(e) => cria(e)} >
             <Typography sx={{marginBottom: '3%'}} variant="h5" color="initial">
