@@ -45,4 +45,16 @@ public class ProdutoController {
         return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
 
+    @PutMapping(path = "/incrementa/{id}")
+    public ResponseEntity<String> aumentaEstoque(
+            @PathVariable("id") UUID id, @RequestParam("quantidade") int quantidade) {
+        return new ResponseEntity<>(service.aumentaEstoque(id, quantidade), HttpStatus.OK);
+    }
+
+    @PutMapping(path = "/decrementa/{id}")
+    public ResponseEntity<String> diminuiEstoque(
+            @PathVariable("id") UUID id, @RequestParam("quantidade") int quantidade) throws Exception {
+        return new ResponseEntity<>(service.diminuiEstoque(id, quantidade), HttpStatus.OK);
+    }
+
 }

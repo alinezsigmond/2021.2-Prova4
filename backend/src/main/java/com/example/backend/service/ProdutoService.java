@@ -59,4 +59,24 @@ public class ProdutoService {
 
         return produto.getQuantidade();
     }
+
+    public String aumentaEstoque(UUID id, int quantidade) {
+        Produto produto = this.findById(id);
+
+        produto.aumentaEstoque(quantidade);
+
+        repository.save(produto);
+
+        return "Estoque de " + produto.getNome() + " incrementado em " + quantidade;
+    }
+
+    public String diminuiEstoque(UUID id, int quantidade) throws Exception {
+        Produto produto = this.findById(id);
+
+        produto.diminuiEstoque(quantidade);
+
+        repository.save(produto);
+
+        return "Estoque de " + produto.getNome() + " reduzido em " + quantidade;
+    }
 }

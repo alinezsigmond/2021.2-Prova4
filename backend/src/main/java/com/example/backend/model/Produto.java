@@ -98,4 +98,16 @@ public class Produto {
     public void setTipoProduto(TipoProduto tipoProduto) {
         this.tipoProduto = tipoProduto;
     }
+
+    public void aumentaEstoque(int quantidade) {
+        this.quantidade = this.quantidade + quantidade;
+    }
+
+    public void diminuiEstoque(int quantidade) throws Exception {
+        if (this.quantidade > 0 && this.quantidade >= quantidade) {
+            this.quantidade = this.quantidade - quantidade;
+        } else {
+            throw new Exception("Tá devendo, é?");
+        }
+    }
 }

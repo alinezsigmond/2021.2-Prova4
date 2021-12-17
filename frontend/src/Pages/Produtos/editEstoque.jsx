@@ -23,12 +23,24 @@ export const EditEstoque = ({produto}) => {
     const [ open, setOpen ] = useState(false);
     const [ quantidade, setQuantidade ] = useState(produto.quantidade);
   
-    const edita = (e) => {
-      e.preventDefault();
-      const toEdit = {
-        quantidade: quantidade
-      }
-      api.put(`http://localhost:8080/api/produtos/estoque/${produto.id}`, toEdit).then(function (response) {
+    const aumenta = (e) => {
+      api.put(`http://localhost:8080/api/produtos/incrementa/${produto.id}`, null, {
+        params: {
+          quantidade
+        }
+      }).then(function (response) {
+      if(response.status === 200) {
+        alert("Quantidade em estoque editada com sucesso");
+        setOpen(false);
+      } 
+    })
+    }
+    const diminui = (e) => {
+      api.put(`http://localhost:8080/api/produtos/decrementa/${produto.id}`, null, {
+        params: {
+          quantidade
+        }
+      }).then(function (response) {
       if(response.status === 200) {
         alert("Quantidade em estoque editada com sucesso");
         setOpen(false);
@@ -41,14 +53,19 @@ export const EditEstoque = ({produto}) => {
       <Button sx={{marginLeft: '1%'}} onClick={() => setOpen(true)}>Editar estoque</Button>
       <Modal open={open} onClose={() => setOpen(false)} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
           <Paper sx={modalStyle}>      
-            <Box component="form" onSubmit={(e) => edita(e)} >
+            <Box component="for" >
             <Typography sx={{marginBottom: '3%'}} variant="h5" color="initial">
-                Editar estoque
+                Quantas unidades?
             </Typography>
-            <TextField sx={{marginBlock: '5%'}} required id="outlined-required" label="Quantidade em estoque" defaultValue={produto.quantidade} onChange={(e) => setQuantidade(e.target.value)} />
+            <TextField sx={{marginBlock: '5%'}} required id="outlined-required" label="Número bonito" defaultValue={produto.quantidade} onChange={(e) => setQuantidade(e.target.value)} />
             <div style={{diplay: 'flex'}} >
-                <Button type="submit" variant="contained" color="success" sx={{marginRight: '5%',backgroundColor: "#00939F", '&:hover': {backgroundColor: "#006870"} }}>
-                    Salvar
+                <Button onClick={() => aumenta(quantidade)}
+                 variant="contained" color="success" sx={{marginRight: '5%',backgroundColor: "#00939F", '&:hover': {backgroundColor: "#006870"} }}>
+                    Aumentar
+                </Button>
+                <Button onClick={() => diminui(quantidade)}
+                variant="contained" color="success" sx={{marginRight: '5%',backgroundColor: "#00939F", '&:hover': {backgroundColor: "#006870"} }}>
+                    Diminuir
                 </Button>
                 <Button type="reset" variant="contained" onClick={() => setOpen(false)} sx={{backgroundColor: "#c3c3c3" }}>
                     Cancelar
